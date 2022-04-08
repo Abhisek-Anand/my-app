@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Miniproject created to learn Typescript and Storybook.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
