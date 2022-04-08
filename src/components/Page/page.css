@@ -1,0 +1,74 @@
+section {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 48px 20px;
+  margin: 0 auto;
+  max-width: 50rem;
+  color: #333;
+}
+
+section .tip {
+  display: inline-block;
+  border-radius: 1em;
+  font-size: 11px;
+  line-height: 12px;
+  font-weight: 700;
+  background: #e7fdd8;
+  color: #66bf3c;
+  padding: 4px 12px;
+  margin-right: 10px;
+  vertical-align: top;
+}
+
+section .tip-wrapper {
+  font-size: 13px;
+  line-height: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+section .tip-wrapper svg {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin-right: 4px;
+  vertical-align: top;
+  margin-top: 3px;
+}
+
+section .tip-wrapper svg path {
+  fill: #1ea7fd;
+}
+
+.flight-search-widget{
+  display: flex;
+}
+.searchBar{
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(228, 225, 236);
+  box-shadow: 0 0.5rem 0.5rem lightgray;
+  margin: 1.5rem 0;
+}
+.searchBar-buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+.headerSection{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.searchBox{
+  margin: 1rem;
+}
+.cardWidget{
+  margin: 1rem;
+  max-width: 10rem;
+}
+.button{
+  margin: 0.15rem 0;
+}
