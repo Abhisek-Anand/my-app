@@ -30,9 +30,9 @@ export const InputBox = ( props : any) => {
       <label>{props.label}</label>
       <br />
       <input {...field} placeholder={props.name} />
-      {/* <p>{fieldState.isTouched && "Touched"}</p>
+      <p>{fieldState.isTouched && "Touched"}</p>
       <p>{fieldState.isDirty && "Dirty"}</p>
-      <p>{fieldState.invalid ? "invalid" : "valid"}</p> */}
+      <p>{fieldState.invalid ? "invalid" : "valid"}</p>
       
     </div>
   );

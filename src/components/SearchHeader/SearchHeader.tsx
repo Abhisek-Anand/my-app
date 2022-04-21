@@ -29,13 +29,17 @@ export const SearchHeader = ({
 }: SearchHeaderProps) => {
   const mode = primary ? "searchHeader--primary" : "searchHeader--secondary";
 
-const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, register } = useForm({
     defaultValues: {
-        source: "",
-        destination: "",
+      source: "",
+      destination: "",
+      count: "",
+      firstName: ""
     },
-    mode: "onChange"
+    mode: "onChange",
   });
+
+
   const onSubmit = (data: any) => console.log(data);
 
   return (
@@ -43,13 +47,49 @@ const { handleSubmit, control } = useForm({
       className={["searchHeader", `searchHeader--${size}`, mode].join(" ")}
       style={backgroundColor && { backgroundColor }}
     >
+      <input
+       type="number"
+        {...register("count", {
+          min: {
+            value: 3,
+            message: 'error message' // JS only: <p>error message</p> TS only support string
+          },
+          
+          validate: {
+            positive: (v) => parseInt(v) > 0 || "should be greater than 0",
+            lessThanTen: (v) => parseInt(v) < 10 || "should be lower than 10",
+            
+          },
+        })}
+      />
+      <input
+       type="firstName"
+        {...register("firstName", {
+          minLength: {
+            value: 3,
+            message: 'error message' // JS only: <p>error message</p> TS only support string
+          },
+          pattern: {
+            value: /[A-Za-z]{3}/,
+            message: 'error message' // JS only: <p>error message</p> TS only support string
+          },
+          //custom validations
+          validate: {
+            positive: (v) => parseInt(v) > 0 || "should be greater than 0",
+            lessThanTen: (v) => parseInt(v) < 10 || "should be lower than 10",
+            // you can do asynchronous validation as well
+            // checkUrl: async (input) => (await fetch(input)) || "error message", // JS only: <p>error message</p> TS only support string
+            messages: (v) => !v && ["test", "test2"],
+          },
+        })}
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="searchBar">
           {/* <p className="error">{errors.source?.message}</p> */}
           <div className="searchBox">
             <InputBox
-            name="source" 
-             rules={{ required: true }}
+              name="source"
+              rules={{ required: true }}
               control={control}
               label="Source"
               placeholder="Source"
@@ -58,8 +98,8 @@ const { handleSubmit, control } = useForm({
           {/* <p className="error">{errors.destination?.message}</p> */}
           <div className="searchBox">
             <InputBox
-            name="destination"
-            rules={{ required: true }}
+              name="destination"
+              rules={{ required: true }}
               control={control}
               label="Destination"
               placeholder="Destination"
