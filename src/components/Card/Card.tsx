@@ -2,7 +2,6 @@ import React from "react";
 import { Style } from "util";
 import { Button } from "../Button/Button";
 import { HeaderText } from "../HeaderText/HeaderText";
-
 import "./card.css";
 
 type SomeType = "small" | "medium" | "large";

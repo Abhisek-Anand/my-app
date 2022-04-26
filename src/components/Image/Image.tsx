@@ -1,6 +1,4 @@
 import React from "react";
-import { NumberLiteralType } from "typescript";
-import { Url } from "url";
 import { Style } from "util";
 
 import "./image.css";
@@ -14,7 +12,7 @@ interface ImageProps {
   alt?: string;
   backgroundColor?: Style;
   src?: string;
-  primary?: Boolean;
+  primary?: boolean;
 }
 
 export const Image = ({
