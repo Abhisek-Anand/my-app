@@ -82,35 +82,35 @@ In order to achieve this import order rule, add “import” under “plugins”
     "plugins": [
         "react",
         "@typescript-eslint",
-        "import"
+        "import"            // This plugin is required for import/order rule to work
     ],
     "rules": {
         "import/order": ["error", {
             "warnOnUnassignedImports": true,
-            "groups": ["builtin", "external", ["internal", "sibling"], ["parent", "index"]],
+            "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
             "pathGroups": [
                 {
-                  "pattern": "react",
+                  "pattern": "react",           // React import should be the first one in order
                   "group": "builtin",
                   "position": "before"
                 },
                 {
-                    "pattern": "fnzc/**",  // Can later be changed to fnz
-                    "group": "external",
+                    "pattern": "fnzc/**",       // All fnzc package imports should be before external imports
+                    "group": "external",        // Here, fnzc represents an external package, it can later be changed to anything else
                     "position": "before"
                 },
                 {
-                    "pattern": "entities/**",
+                    "pattern": "entities/**",   // Entities imports should appear after sibling imports
                     "group": "sibling",
                     "position": "after"
                 },
                 {
-                    "pattern": "utils/**",
+                    "pattern": "utils/**",      // Utils imports should appear after sibling imports (also after entities import)
                     "group": "sibling",
                     "position": "after"
                 },
                 {
-                    "pattern": "*.css",
+                    "pattern": "*.css",         // All css related imports should appear at last (after index)
                     "patternOptions": {
                       "dot": true,
                       "nocomment": true,
@@ -120,7 +120,7 @@ In order to achieve this import order rule, add “import” under “plugins”
                     "position": "after"
                   }
             ],
-            "pathGroupsExcludedImportTypes": ["react", "fnzc", "entities", "utils", "builtin"], // Change here also
+            "pathGroupsExcludedImportTypes": ["react", "fnzc", "entities", "utils", "builtin"],  // Here, fnzc represents an external package, it can later be changed to anything else
             "alphabetize": {
                 "order": "asc",
                 "caseInsensitive": true
@@ -178,6 +178,15 @@ alphabetize: {
   caseInsensitive: true /* ignore case. Options: [true, false] */
 }
 ```
+
+## CHALLENGE: 
+The imports of type “../something” or “../../something” are considered as part of “parent” group, but we want them to be identified as “internal” components. This can be achieved by setting the baseUrl to “src” in tsconfig.json file. Once this is done, then the imports inside our components will also have to be modified in such as way so that if there is any import, which is the immediate child of “src”, then that would be written as – 
+
+Before change – `import “../../components/List”`
+After change – `import “components/List”`
+Where components folder is one level inside `src` folder.
+The advantage of taking this approach would be that we would not need to worry about the component’s location in the project while importing it in some other component.
+
 
 ### Some useful links:
 1.	https://eslint.org/docs/user-guide/getting-started
