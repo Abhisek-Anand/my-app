@@ -27,7 +27,8 @@ Would you like to install them now with npm? (Yes/No)
 Answer all the questions as per your project and select yes for the last question to install eslint.
 After that, the following file will be generated in the project root directory (in case we selected React as framework, Yes for TypeScript and JSON for format of config file):
 
-`{
+```javascript
+{
     "env": {
         "browser": true,
         "es2021": true
@@ -51,45 +52,138 @@ After that, the following file will be generated in the project root directory (
     ],
     "rules": {
     }
-}`
+}
+```
 
+3.	Now that the initial setup is done, we can add our own custom rules in this file. Let’s say we want to make the imports appear in a certain order in every component file and the import order that needs to be followed is like this:
+a.	Import React.
+b.	Import @fnz packages (in alphabetical order).
+c.	Import third party packages (in alphabetical order).
+d.	Import internal components (in alphabetical order).
+e.	Import entities (in alphabetical order).
+f.	Import utils (in alphabetical order).
+In order to achieve this import order rule, add “import” under “plugins” and modify the eslint.json file by adding a rule as shown below:
 
+```javascript
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "import"
+    ],
+    "rules": {
+        "import/order": ["error", {
+            "warnOnUnassignedImports": true,
+            "groups": ["builtin", "external", ["internal", "sibling"], ["parent", "index"]],
+            "pathGroups": [
+                {
+                  "pattern": "react",
+                  "group": "builtin",
+                  "position": "before"
+                },
+                {
+                    "pattern": "fnzc/**",  // Can later be changed to fnz
+                    "group": "external",
+                    "position": "before"
+                },
+                {
+                    "pattern": "entities/**",
+                    "group": "sibling",
+                    "position": "after"
+                },
+                {
+                    "pattern": "utils/**",
+                    "group": "sibling",
+                    "position": "after"
+                },
+                {
+                    "pattern": "*.css",
+                    "patternOptions": {
+                      "dot": true,
+                      "nocomment": true,
+                      "matchBase": true
+                    },
+                    "group": "index",
+                    "position": "after"
+                  }
+            ],
+            "pathGroupsExcludedImportTypes": ["react", "fnzc", "entities", "utils", "builtin"], // Change here also
+            "alphabetize": {
+                "order": "asc",
+                "caseInsensitive": true
+                }
+            }
+        ]
+    }
+}
 
-### `npm start`
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## RULE EXPLANATION: This rule supports the following options:
+### groups: [array]:
+groups must be an array of string or [string], it specifies the order to respect. The only allowed strings are :
+"builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object", "type"
+The enforced order is the same as the order of each element in a group. Omitted types are implicitly grouped together as the last element. The allowed string types are explained below:
+a.	"builtin":  node “builtin” modules
+e.g. - import fs from ‘fs’;
+b.	"external": external/third-party modules
+       e.g. – import _ from ‘lodash’;
+c.	"internal": internal modules
+e.g. – import foo from ‘src/foo’;
+d.	"parent": modules from a parent directory
+e.g. – import foo from ‘../foo’;
+e.	"sibling": sibling modules from the same or a sibling’s directory
+e.g. – import bar from ‘./bar’;
+f.	"index": index of the current directory
+      e.g. – import main from ‘./’;
+g.	"object": object imports (only available in TypeScript)
+      e.g. – import log = console.log;
+h.	"type": type imports (available in TypeScript)
+e.g. – import type { Foo } from ‘foo’;
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### pathGroups: [array of objects]:
 
-### `npm test`
+To be able to group by paths mostly needed with aliases pathGroups can be defined. We’ll be using this for entities and utils imports. Each path group object has certain properties as below:
+a.	pattern - minimatch pattern for the paths to be in this group.
+b.	patternOptions - options for minimatch.
+c.	group - one of the allowed groups, the pathGroup will be positioned relative to this group.
+d.	position - defines where around the group the pathGroup will be positioned, can be ‘after’ or ‘before’, if not provided pathGroup will be positioned like the group.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### pathGroupsExcludedImportTypes: [array]:
 
-### `npm run build`
+This defines import types that are not handled by configured pathGroups. This is mostly needed when you want to handle path groups that look like external imports.
+alphabetize: {order: asc|desc|ignore, caseInsensitive: true|false}:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sort the order within each group in alphabetical manner based on import path:
+•	order: use asc to sort in ascending order, and desc to sort in descending order (default: ignore).
+•	caseInsensitive: use true to ignore case, and false to consider case (default: false).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Example:
+```javascript
+alphabetize: {
+  order: 'asc', /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */
+  caseInsensitive: true /* ignore case. Options: [true, false] */
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Some useful links:
+1.	https://eslint.org/docs/user-guide/getting-started
+2.	https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
