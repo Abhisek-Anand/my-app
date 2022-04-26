@@ -182,7 +182,7 @@ alphabetize: {
 ```
 
 ## CHALLENGE: 
-The imports of type `“../something”` or `“../../something”` are considered as part of `“parent”` group, but we want them to be identified as `“internal”` components. <br/> This can be achieved by setting the baseUrl to “src” in tsconfig.json file. Once this is done, then the imports inside our components will also have to be modified in such as way so that if there is any import, which is the immediate child of “src”, then that would be written as – 
+The imports of type `“../something”` or `“../../something”` are considered as part of `“parent”` group, but we want them to be identified as `“internal”` components. <br/> This can be achieved by setting the baseUrl to `“src”` in tsconfig.json file. Once this is done, then the imports inside our components will also have to be modified in such as way so that if there is any import, which is the immediate child of `“src”`, then that would be written as – 
 
 Before change – `import “../../components/List”`
 After change – `import “components/List”`
