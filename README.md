@@ -13,9 +13,9 @@ We use eslintrc. json to define the configuration structure. ESLint supports con
 Adding ESLint to existing project:
 In order to add and use ESLint in an existing project, follow the below steps:
 1.	Add ESLint as a dev dependency by running the following command in the project root directory:
-### npm install --save-dev eslint
+### `npm install --save-dev eslint`
 2.	Once ESLint is installed in your project, the next step is to generate or initialize the eslint config file. Use either of the below commands to generate an eslint file for your project:
-### npm init @eslint/config    OR     eslint –init
+### `npm init @eslint/config`    OR     `eslint –init`
 You will be asked few questions as below, select the appropriate options as shown aside them also:
 How would you like to use ESLint? (To check syntax and find problems)
 What type of modules does your project use? (JS modules)
@@ -27,7 +27,7 @@ Would you like to install them now with npm? (Yes/No)
 Answer all the questions as per your project and select yes for the last question to install eslint.
 After that, the following file will be generated in the project root directory (in case we selected React as framework, Yes for TypeScript and JSON for format of config file):
 
-{
+`{
     "env": {
         "browser": true,
         "es2021": true
@@ -51,7 +51,7 @@ After that, the following file will be generated in the project root directory (
     ],
     "rules": {
     }
-}
+}`
 
 
 
