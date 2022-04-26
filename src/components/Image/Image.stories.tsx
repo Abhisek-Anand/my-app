@@ -7,7 +7,6 @@ export default {
   title: 'Example/Image',
   component: Image,
   parameters: {
-  
     layout: 'fullscreen',
   },
   
@@ -16,25 +15,4 @@ export default {
 const Template: ComponentStory<typeof Image> = (args) => <Image {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-    height:"20rem",
-    width:"20rem",
-    alt: 'Button',
-    src: "https://source.unsplash.com/random",
-  };
-  
-  export const Secondary = Template.bind({});
-  Secondary.args = {
-    alt: 'Button',
-  };
-  
-  export const Large = Template.bind({});
-  Large.args = {
-    size: 'large',
-    alt: 'Button',
-  };
-  
-  export const Small = Template.bind({});
-  Small.args = {
-    size: 'small',
-   };
+
