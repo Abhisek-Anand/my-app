@@ -2,9 +2,58 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## ESLint import order rule:
 
-In the project directory, you can run:
+What is ESLint?
+ESLint is a static code analysis tool for identifying problematic patterns found in JavaScript code.
+
+What does Eslintrc file do?
+We use eslintrc. json to define the configuration structure. ESLint supports configuration files in several formats such as JavaScript (.js), JavaScript (ESM) (.cjs), YAML (.yaml or .yml), JSON (.json) and package.json (create an eslintConfig property in your package.json file and define your configuration there).
+
+Adding ESLint to existing project:
+In order to add and use ESLint in an existing project, follow the below steps:
+1.	Add ESLint as a dev dependency by running the following command in the project root directory:
+### npm install --save-dev eslint
+2.	Once ESLint is installed in your project, the next step is to generate or initialize the eslint config file. Use either of the below commands to generate an eslint file for your project:
+### npm init @eslint/config    OR     eslint –init
+You will be asked few questions as below, select the appropriate options as shown aside them also:
+How would you like to use ESLint? (To check syntax and find problems)
+What type of modules does your project use? (JS modules)
+Which framework does your project use? (React/Vue)
+Does your project use TypeScript? (Yes/No)
+Where does your code run? (Browser/Node)
+What format do you want your config file to be in? (JS/YAML/JSON)
+Would you like to install them now with npm? (Yes/No)
+Answer all the questions as per your project and select yes for the last question to install eslint.
+After that, the following file will be generated in the project root directory (in case we selected React as framework, Yes for TypeScript and JSON for format of config file):
+
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+    }
+}
+
+
 
 ### `npm start`
 
