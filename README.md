@@ -1,16 +1,12 @@
-# Getting Started with Create React App
+# Setting custom eslint import order rules
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## ESLint import order rule:
-
-What is ESLint?
+## What is ESLint?
 ESLint is a static code analysis tool for identifying problematic patterns found in JavaScript code.
 
-What does Eslintrc file do?
+## What does Eslintrc file do?
 We use eslintrc. json to define the configuration structure. ESLint supports configuration files in several formats such as JavaScript (.js), JavaScript (ESM) (.cjs), YAML (.yaml or .yml), JSON (.json) and package.json (create an eslintConfig property in your package.json file and define your configuration there).
 
-Adding ESLint to existing project:
+## Adding ESLint to existing project:
 In order to add and use ESLint in an existing project, follow the below steps:
 1.	Add ESLint as a dev dependency by running the following command in the project root directory:
 ### `npm install --save-dev eslint`
