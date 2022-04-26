@@ -12,7 +12,7 @@ interface DropDownProps {
   primary?: boolean;
 }
 
-export const DropDown = ({
+const DropDown = ({
   label,
   size = "large",
   primary = false,
@@ -41,3 +41,5 @@ export const DropDown = ({
     </div>
   );
 };
+
+export default DropDown

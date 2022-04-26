@@ -33,7 +33,7 @@ export const Footer = ({
       )}
       style={backgroundColor && { backgroundColor }}
       >
-        {footerText} {" "}<a href={link} target="_blank">{linkText}</a>
+        {footerText} {" "}<a href={link} >{linkText}</a>
       </div>
   );
 };

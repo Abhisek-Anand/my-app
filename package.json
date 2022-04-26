@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fnzc/nz-ird-validator": "^1.1.0",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/user-event": "^13.5.0",
     "@types/color": "^3.0.3",
@@ -23,6 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -66,8 +68,8 @@
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "0.0.9",
     "@testing-library/react": "^12.1.4",
-    "@typescript-eslint/eslint-plugin": "^5.19.0",
-    "@typescript-eslint/parser": "^5.19.0",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "eslint": "^8.13.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-standard": "^16.0.3",

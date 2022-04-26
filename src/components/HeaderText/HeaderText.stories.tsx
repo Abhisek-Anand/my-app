@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
-import { HeaderText } from './HeaderText';
 import Color from 'color';
+import { HeaderText } from './HeaderText';
+
 
 export default {
   title: 'Example/HeaderText',

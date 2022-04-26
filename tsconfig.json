@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src", //This is required for eslint to identify internal imports.
     "target": "es5",
     "lib": [
       "dom",
