@@ -13,14 +13,14 @@ In order to add and use ESLint in an existing project, follow the below steps:
 2.	Once ESLint is installed in your project, the next step is to generate or initialize the eslint config file. Use either of the below commands to generate an eslint file for your project:
 ### `npm init @eslint/config`    OR     `eslint –init`
 You will be asked few questions as below, select the appropriate options as shown aside them also: <br/>
-How would you like to use ESLint? (To check syntax and find problems) <br/>
-What type of modules does your project use? (JS modules)  <br/>
-Which framework does your project use? (React/Vue)  <br/>
-Does your project use TypeScript? (Yes/No)  <br/>
-Where does your code run? (Browser/Node) <br/>
-What format do you want your config file to be in? (JS/YAML/JSON) <br/>
-Would you like to install them now with npm? (Yes/No) <br/>
-Answer all the questions as per your project and select yes for the last question to install eslint. <br/>
+    How would you like to use ESLint? (To check syntax and find problems) <br/>
+    What type of modules does your project use? (JS modules)  <br/>
+    Which framework does your project use? (React/Vue)  <br/>
+    Does your project use TypeScript? (Yes/No)  <br/>
+    Where does your code run? (Browser/Node) <br/>
+    What format do you want your config file to be in? (JS/YAML/JSON) <br/>
+    Would you like to install them now with npm? (Yes/No) <br/>
+    Answer all the questions as per your project and select yes for the last question to install eslint. <br/>
 After that, the following file will be generated in the project root directory (in case we selected React as framework, Yes for TypeScript and JSON for format of config file): <br/>
 
 ```javascript
@@ -52,12 +52,12 @@ After that, the following file will be generated in the project root directory (
 ```
 
 3.	Now that the initial setup is done, we can add our own custom rules in this file. Let’s say we want to make the imports appear in a certain order in every component file and the import order that needs to be followed is like this:
-1.	Import React.
-2.	Import @fnz packages (in alphabetical order). 
-3.	Import third party packages (in alphabetical order).
-4.	Import internal components (in alphabetical order). 
-5.	Import entities (in alphabetical order).
-6.	Import utils (in alphabetical order). <br/>
+    1.	Import React.
+    2.	Import @fnz packages (in alphabetical order). 
+    3.	Import third party packages (in alphabetical order).
+    4.	Import internal components (in alphabetical order). 
+    5.	Import entities (in alphabetical order).
+    6.	Import utils (in alphabetical order). <br/>
 In order to achieve this import order rule, add “import” under “plugins” and modify the eslint.json file by adding a rule as shown below: <br/>
 
 ```javascript
