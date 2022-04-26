@@ -12,16 +12,16 @@ In order to add and use ESLint in an existing project, follow the below steps:
 ### `npm install --save-dev eslint`
 2.	Once ESLint is installed in your project, the next step is to generate or initialize the eslint config file. Use either of the below commands to generate an eslint file for your project:
 ### `npm init @eslint/config`    OR     `eslint –init`
-You will be asked few questions as below, select the appropriate options as shown aside them also:
-How would you like to use ESLint? (To check syntax and find problems)
-What type of modules does your project use? (JS modules)
-Which framework does your project use? (React/Vue)
-Does your project use TypeScript? (Yes/No)
-Where does your code run? (Browser/Node)
-What format do you want your config file to be in? (JS/YAML/JSON)
-Would you like to install them now with npm? (Yes/No)
-Answer all the questions as per your project and select yes for the last question to install eslint.
-After that, the following file will be generated in the project root directory (in case we selected React as framework, Yes for TypeScript and JSON for format of config file):
+You will be asked few questions as below, select the appropriate options as shown aside them also: <br/>
+How would you like to use ESLint? (To check syntax and find problems) <br/>
+What type of modules does your project use? (JS modules)  <br/>
+Which framework does your project use? (React/Vue)  <br/>
+Does your project use TypeScript? (Yes/No)  <br/>
+Where does your code run? (Browser/Node) <br/>
+What format do you want your config file to be in? (JS/YAML/JSON) <br/>
+Would you like to install them now with npm? (Yes/No) <br/>
+Answer all the questions as per your project and select yes for the last question to install eslint. <br/>
+After that, the following file will be generated in the project root directory (in case we selected React as framework, Yes for TypeScript and JSON for format of config file): <br/>
 
 ```javascript
 {
@@ -52,13 +52,13 @@ After that, the following file will be generated in the project root directory (
 ```
 
 3.	Now that the initial setup is done, we can add our own custom rules in this file. Let’s say we want to make the imports appear in a certain order in every component file and the import order that needs to be followed is like this:
-a.	Import React.
-b.	Import @fnz packages (in alphabetical order).
-c.	Import third party packages (in alphabetical order).
-d.	Import internal components (in alphabetical order).
-e.	Import entities (in alphabetical order).
-f.	Import utils (in alphabetical order).
-In order to achieve this import order rule, add “import” under “plugins” and modify the eslint.json file by adding a rule as shown below:
+1.	Import React.
+2.	Import @fnz packages (in alphabetical order). 
+3.	Import third party packages (in alphabetical order).
+4.	Import internal components (in alphabetical order). 
+5.	Import entities (in alphabetical order).
+6.	Import utils (in alphabetical order). <br/>
+In order to achieve this import order rule, add “import” under “plugins” and modify the eslint.json file by adding a rule as shown below: <br/>
 
 ```javascript
 {
@@ -134,42 +134,44 @@ In order to achieve this import order rule, add “import” under “plugins”
 
 ## RULE EXPLANATION: This rule supports the following options:
 ### groups: [array]:
-groups must be an array of string or [string], it specifies the order to respect. The only allowed strings are :
-"builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object", "type"
-The enforced order is the same as the order of each element in a group. Omitted types are implicitly grouped together as the last element. The allowed string types are explained below:
-a.	"builtin":  node “builtin” modules
-e.g. - import fs from ‘fs’;
-b.	"external": external/third-party modules
+groups must be an array of string or [string], it specifies the order to respect. The only allowed strings are : <br/>
+`"builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object", "type"` <br/>
+The enforced order is the same as the order of each element in a group. Omitted types are implicitly grouped together as the last element.  <br/>
+The allowed string types are explained below:
+1.	"builtin":  node “builtin” modules <br/>
+e.g. - import fs from ‘fs’; 
+2.	"external": external/third-party modules <br/>
        e.g. – import _ from ‘lodash’;
-c.	"internal": internal modules
+3.	"internal": internal modules <br/>
 e.g. – import foo from ‘src/foo’;
-d.	"parent": modules from a parent directory
+4.	"parent": modules from a parent directory <br/>
 e.g. – import foo from ‘../foo’;
-e.	"sibling": sibling modules from the same or a sibling’s directory
+5.	"sibling": sibling modules from the same or a sibling’s directory <br/>
 e.g. – import bar from ‘./bar’;
-f.	"index": index of the current directory
+6.	"index": index of the current directory <br/>
       e.g. – import main from ‘./’;
-g.	"object": object imports (only available in TypeScript)
+7.	"object": object imports (only available in TypeScript) <br/>
       e.g. – import log = console.log;
-h.	"type": type imports (available in TypeScript)
+8.	"type": type imports (available in TypeScript) <br/>
 e.g. – import type { Foo } from ‘foo’;
 
 ### pathGroups: [array of objects]:
 
 To be able to group by paths mostly needed with aliases pathGroups can be defined. We’ll be using this for entities and utils imports. Each path group object has certain properties as below:
-a.	pattern - minimatch pattern for the paths to be in this group.
-b.	patternOptions - options for minimatch.
-c.	group - one of the allowed groups, the pathGroup will be positioned relative to this group.
-d.	position - defines where around the group the pathGroup will be positioned, can be ‘after’ or ‘before’, if not provided pathGroup will be positioned like the group.
+1.	pattern - minimatch pattern for the paths to be in this group.
+2.	patternOptions - options for minimatch.
+3.	group - one of the allowed groups, the pathGroup will be positioned relative to this group.
+4.	position - defines where around the group the pathGroup will be positioned, can be ‘after’ or ‘before’, if not provided pathGroup will be positioned like the group.
 
 ### pathGroupsExcludedImportTypes: [array]:
 
-This defines import types that are not handled by configured pathGroups. This is mostly needed when you want to handle path groups that look like external imports.
-alphabetize: {order: asc|desc|ignore, caseInsensitive: true|false}:
+This defines import types that are not handled by configured pathGroups.  <br/>
+This is mostly needed when you want to handle path groups that look like external imports. <br/>
+### `alphabetize: {order: asc|desc|ignore, caseInsensitive: true|false}`
 
 Sort the order within each group in alphabetical manner based on import path:
-•	order: use asc to sort in ascending order, and desc to sort in descending order (default: ignore).
-•	caseInsensitive: use true to ignore case, and false to consider case (default: false).
+-	order: use asc to sort in ascending order, and desc to sort in descending order (default: ignore).
+-	caseInsensitive: use true to ignore case, and false to consider case (default: false).
 
 ### Example:
 ```javascript
@@ -180,7 +182,7 @@ alphabetize: {
 ```
 
 ## CHALLENGE: 
-The imports of type “../something” or “../../something” are considered as part of “parent” group, but we want them to be identified as “internal” components. This can be achieved by setting the baseUrl to “src” in tsconfig.json file. Once this is done, then the imports inside our components will also have to be modified in such as way so that if there is any import, which is the immediate child of “src”, then that would be written as – 
+The imports of type `“../something”` or `“../../something”` are considered as part of `“parent”` group, but we want them to be identified as `“internal”` components. <br/> This can be achieved by setting the baseUrl to “src” in tsconfig.json file. Once this is done, then the imports inside our components will also have to be modified in such as way so that if there is any import, which is the immediate child of “src”, then that would be written as – 
 
 Before change – `import “../../components/List”`
 After change – `import “components/List”`
