@@ -1,10 +1,7 @@
-import React from 'react'
-
+import React from "react";
 
 const SiblingTest = (props: any) => {
-  return (
-    <div>SiblingTest</div>
-  )
-}
+    return <div>SiblingTest</div>;
+};
 
-export default SiblingTest
+export default SiblingTest;

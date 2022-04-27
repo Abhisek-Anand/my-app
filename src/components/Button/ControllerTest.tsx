@@ -1,10 +1,7 @@
-import React from 'react'
-
+import React from "react";
 
 const Controller = (props: any) => {
-  return (
-    <div>Controller</div>
-  )
-}
+    return <div>Controller</div>;
+};
 
-export default Controller
+export default Controller;

@@ -1,18 +1,21 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
-import  DropDown  from './DropDown';
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import DropDown from "./DropDown";
 
 export default {
-  title: 'Example/DropDown',
-  component: DropDown,
-  parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen',
-  },
+    title: "Example/DropDown",
+    component: DropDown,
+    parameters: {
+        layout: "fullscreen",
+    },
 } as ComponentMeta<typeof DropDown>;
 
-const Template: ComponentStory<typeof DropDown> = (args) => <DropDown {...args} />;
+const Template: ComponentStory<typeof DropDown> = (args) => (
+    <DropDown {...args} />
+);
 
-export const Primary = Template.bind({});
-  
+export const Default = Template.bind({});
+
+Default.args = {
+    options: [1, 2, 3, 4, 5],
+};

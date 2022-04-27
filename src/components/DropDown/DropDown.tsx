@@ -1,14 +1,18 @@
 import React from "react";
 import "./dropDown.css";
 
-
-const DropDown = (props: any) => {
-  
-  return (
-    <div>
-      Dropdown
-    </div>
-  );
+type DropdownProps = {
+    options: Array<number>;
 };
 
-export default DropDown
+const Dropdown = ({ options }: DropdownProps) => {
+    return (
+        <select>
+            {options.map((option: number) => (
+                <option key={option}>{option}</option>
+            ))}
+        </select>
+    );
+};
+
+export default Dropdown;
