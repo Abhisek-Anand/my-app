@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Props = {}
+type Props = any
 
 const Empty = (props: Props) => {
   return (
