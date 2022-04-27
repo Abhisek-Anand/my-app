@@ -189,6 +189,17 @@ After change – `import “components/List”`
 Where components folder is one level inside `src` folder.
 The advantage of taking this approach would be that we would not need to worry about the component’s location in the project while importing it in some other component.
 
+## Auto-fix ESlint errors
+### Fix autofixable errors only
+To fix the eslint errors automatically, we have two options: 
+1. Include a script in package.json file in scripts section: 
+    ```javascript
+    "lint-fix": "eslint --fix src/**/*.tsx"
+    ```
+    To execute this script run the following command on terminal: 
+    `npm run lint-fix`
+2. Run this command in terminal directly
+    `npx eslint --fix src/**/*.tsx` (for files with .tsx extension).
 
 ### Some useful links:
 1.	https://eslint.org/docs/user-guide/getting-started
